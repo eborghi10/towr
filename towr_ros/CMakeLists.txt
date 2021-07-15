@@ -3,6 +3,7 @@ project(towr_ros)
 
 add_compile_options(-std=c++11)
 
+find_package(towr REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rosbag
@@ -11,7 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   xpp_msgs
   xpp_states
-  towr
 )
 
 
@@ -43,22 +43,24 @@ include_directories(
 add_library(${PROJECT_NAME} SHARED
   src/towr_ros_interface.cc
 )
-add_dependencies(${PROJECT_NAME} 
+add_dependencies(${PROJECT_NAME}
   ${PROJECT_NAME}_gencpp
 )
 target_link_libraries(${PROJECT_NAME}
+  towr
   ${catkin_LIBRARIES}
 )
 
 
 ## An example executable that runs TOWR
-add_executable(towr_ros_app 
+add_executable(towr_ros_app
   src/towr_ros_app.cc
 )
-add_dependencies(towr_ros_app 
+add_dependencies(towr_ros_app
   ${PROJECT_NAME}_gencpp
 )
 target_link_libraries(towr_ros_app
+  towr
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}
 )
@@ -66,52 +68,55 @@ target_link_libraries(towr_ros_app
 
 ## Keyboard interfaces (ncurses)
 find_package(Curses REQUIRED)
-add_executable(towr_user_interface 
+add_executable(towr_user_interface
   src/towr_user_interface.cc
 )
-add_dependencies(towr_user_interface 
+add_dependencies(towr_user_interface
   ${PROJECT_NAME}_gencpp
 )
-target_link_libraries(towr_user_interface 
+target_link_libraries(towr_user_interface
   ${catkin_LIBRARIES}
   ${CURSES_LIBRARIES}
 )
 
 
 # Display different terrains in rviz
-add_executable(rviz_terrain_publisher 
+add_executable(rviz_terrain_publisher
   src/rviz_terrain_publisher.cc
 )
-add_dependencies(rviz_terrain_publisher 
+add_dependencies(rviz_terrain_publisher
   ${PROJECT_NAME}_gencpp
 )
 target_link_libraries(rviz_terrain_publisher
+  towr
   ${catkin_LIBRARIES}
 )
 
 
 # Display goal pose in rviz
-add_executable(goal_pose_publisher 
+add_executable(goal_pose_publisher
   src/goal_pose_publisher.cc
 )
-add_dependencies(goal_pose_publisher 
+add_dependencies(goal_pose_publisher
   ${PROJECT_NAME}_gencpp
-) 
+)
 target_link_libraries(goal_pose_publisher
+  towr
   ${catkin_LIBRARIES}
 )
 
 
 # (Optional) to manipulate ROS bags
-add_executable(rosbag_traj_combiner 
+add_executable(rosbag_traj_combiner
   src/rosbag_traj_combiner.cc
 )
 target_link_libraries(rosbag_traj_combiner
+  towr
   ${catkin_LIBRARIES}
 )
 
 
-add_executable(rosbag_geom_msg_extractor 
+add_executable(rosbag_geom_msg_extractor
   src/rosbag_geom_msg_extractor.cc
 )
 target_link_libraries(rosbag_geom_msg_extractor

@@ -13,14 +13,14 @@
   <author>Alexander W. Winkler</author>
   <maintainer email="alexander.w.winkler@gmail.com">Alexander W. Winkler</maintainer>
   <license>BSD</license>
-  
+
   <url type="website">http://github.com/ethz-adrl/towr</url>
   <url type="bugtracker">http://github.com/ethz-adrl/towr/issues</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-    
+
   <depend>libncurses-dev</depend>
-  
+
   <depend>message_runtime</depend>
   <depend>message_generation</depend>
   <depend>std_msgs</depend>
@@ -29,8 +29,7 @@
   <depend>rosbag</depend>
   <depend>xpp_states</depend>
   <depend>xpp_msgs</depend>
-  <depend>towr</depend>
-  
+
   <exec_depend>xterm</exec_depend>
   <exec_depend>xpp_hyq</exec_depend>
   <exec_depend>rviz</exec_depend>
