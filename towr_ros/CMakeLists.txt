@@ -37,6 +37,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${towr_INCLUDE_DIRS}
 )
 
 # The interface to derive from for ros integration
@@ -47,7 +48,7 @@ add_dependencies(${PROJECT_NAME}
   ${PROJECT_NAME}_gencpp
 )
 target_link_libraries(${PROJECT_NAME}
-  towr
+  ${towr_LIBRARIES}
   ${catkin_LIBRARIES}
 )
 
@@ -60,7 +61,7 @@ add_dependencies(towr_ros_app
   ${PROJECT_NAME}_gencpp
 )
 target_link_libraries(towr_ros_app
-  towr
+  ${towr_LIBRARIES}
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}
 )
@@ -88,7 +89,7 @@ add_dependencies(rviz_terrain_publisher
   ${PROJECT_NAME}_gencpp
 )
 target_link_libraries(rviz_terrain_publisher
-  towr
+  ${towr_LIBRARIES}
   ${catkin_LIBRARIES}
 )
 
@@ -101,7 +102,7 @@ add_dependencies(goal_pose_publisher
   ${PROJECT_NAME}_gencpp
 )
 target_link_libraries(goal_pose_publisher
-  towr
+  ${towr_LIBRARIES}
   ${catkin_LIBRARIES}
 )
 
@@ -111,7 +112,7 @@ add_executable(rosbag_traj_combiner
   src/rosbag_traj_combiner.cc
 )
 target_link_libraries(rosbag_traj_combiner
-  towr
+  ${towr_LIBRARIES}
   ${catkin_LIBRARIES}
 )
 
